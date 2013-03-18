@@ -1,6 +1,7 @@
     package org.archive.accesscontrol.model;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.archive.accesscontrol.RuleDao;
@@ -40,6 +41,24 @@ public class HibernateRuleDao extends HibernateDaoSupport implements RuleDao {
                 "from Rule rule where rule.surt = ?", surt);
     }
     
+    public List<Rule> getRulesModifiedAfter(Date date, String who, String customRestrict) {
+    	
+    	String ruleWhereQuery = "from Rule rule where ";
+    	
+    	if (customRestrict != null) {
+    		ruleWhereQuery += customRestrict;
+    	}
+    	
+    	if (who == null && date != null) {
+    		return getHibernateTemplate().find(ruleWhereQuery + " rule.lastModified >= ?", date);
+    	} else if (who != null && date == null) {
+    		return getHibernateTemplate().find(ruleWhereQuery + " rule.who = ? or rule.who = \'\'", who);    		
+    	}
+    	
+    	Object[] params = {date, who};
+    	return getHibernateTemplate().find(ruleWhereQuery + " rule.lastModified >= ? and (rule.who = ? or rule.who = \'\')", params);
+    }
+    
     /**
      * Returns the "rule tree" for a given SURT. This is a sorted set of all
      * rules equal or lower in specificity than the given SURT plus all rules on
@@ -72,6 +91,7 @@ public class HibernateRuleDao extends HibernateDaoSupport implements RuleDao {
     }
 
     public void saveRule(Rule rule) {
+    	//rule.setLastModified(new Date());
         getHibernateTemplate().saveOrUpdate(rule);
     }
     
@@ -99,6 +119,7 @@ public class HibernateRuleDao extends HibernateDaoSupport implements RuleDao {
      * @param change
      */
     public void saveRule(Rule rule, RuleChange change) {
+    	//rule.setLastModified(new Date());    	
         Session session1 = getHibernateTemplate().getSessionFactory().openSession();
         Transaction tx = session1.beginTransaction();
         session1.saveOrUpdate(rule);

@@ -1,9 +1,14 @@
 package org.archive.accesscontrol.oracle;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +17,6 @@ import org.apache.commons.httpclient.URIException;
 import org.archive.accesscontrol.model.HibernateRuleDao;
 import org.archive.accesscontrol.model.Rule;
 import org.archive.accesscontrol.model.RuleChange;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
@@ -21,7 +25,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
 public class RulesController extends AbstractController {
     private HibernateRuleDao ruleDao;
     private AutoFormatView view;
-
+    
     @Autowired
     public RulesController(HibernateRuleDao ruleDao, AutoFormatView view) {
         this.ruleDao = ruleDao;
@@ -206,7 +210,10 @@ public class RulesController extends AbstractController {
      * @param request
      * @return
      */
-    public ModelAndView getRules(HttpServletRequest request) {
+	protected SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	
+    public ModelAndView getRules(HttpServletRequest request) throws UnsupportedEncodingException, ParseException {
         String prefix = request.getParameter("prefix");
         if (prefix != null) {
             return new ModelAndView(view, "object", ruleDao
@@ -218,8 +225,27 @@ public class RulesController extends AbstractController {
             return new ModelAndView(view, "object", ruleDao
                     .getRulesWithExactSurt(surt));
         }
-
-        return new ModelAndView(view, "object", ruleDao.getAllRules());
+        
+		List<Rule> rules = null;
+        String modifiedAfter = request.getParameter("modifiedAfter");
+        Date date = null;
+        
+        if (modifiedAfter != null) {
+        	modifiedAfter = URLDecoder.decode(modifiedAfter, "UTF-8");
+        	date = dateFormat.parse(modifiedAfter);
+        }
+        
+        String who = request.getParameter("who");
+        
+        if (date != null || who != null) {
+        	rules = ruleDao.getRulesModifiedAfter(date, who, view.getCustomRestrict());
+        }
+        
+        if (rules == null) {
+        	rules = ruleDao.getAllRules();
+        }
+        
+    	return new ModelAndView(view, "object", rules);        
     }
     
     /**
@@ -242,7 +268,7 @@ public class RulesController extends AbstractController {
      */
     public ModelAndView getRuleTree(String surt) throws URIException {
     	surt = fixupSchemeSlashes(surt);
-    	System.out.println("*** getRuleTree: " + surt);
+    	//System.out.println("*** getRuleTree: " + surt);
         return new ModelAndView(view, "object", ruleDao.getRuleTree(surt));        
     }
 
@@ -277,7 +303,8 @@ public class RulesController extends AbstractController {
                 return getRules(request);
             } else if (request.getMethod().equals("DELETE")) { // DELETE /rules
                 // FIXME: this is useful for testing but is dangerous
-                ruleDao.deleteAllRules();
+                //Disabled
+            	//ruleDao.deleteAllRules();
                 return null;
             }
         }

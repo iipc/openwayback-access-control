@@ -31,6 +31,7 @@ public class Rule implements Comparable<Rule> {
     private String publicComment;
     private Boolean enabled;
     private Boolean exactMatch = Boolean.FALSE;
+    private Date lastModified = new Date();
 
     public Rule() {
     	super();
@@ -391,4 +392,13 @@ public class Rule implements Comparable<Rule> {
     public void setExactMatch(Boolean exactMatch) {
         this.exactMatch = ((exactMatch == null) ? Boolean.FALSE : exactMatch);
     }
+
+	public void setLastModified(Date date) {
+		this.lastModified = date;
+	}
+	
+	public Date getLastModified()
+	{
+		return this.lastModified;
+	}
 }

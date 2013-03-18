@@ -19,6 +19,7 @@ import org.springframework.web.servlet.View;
 public class AutoFormatView implements View {
     private Map<String, View> views;
     private String defaultFormat;
+    private String customRestrict;
     
 
     /**
@@ -63,7 +64,7 @@ public class AutoFormatView implements View {
 
     public void render(Map model, HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        System.out.println("views = " + views + " defaultFormat =" + defaultFormat);
+        //System.out.println("views = " + views + " defaultFormat =" + defaultFormat);
         String format = request.getParameter("format");
 
         if (format == null || format.equals("")) {
@@ -95,4 +96,12 @@ public class AutoFormatView implements View {
         XStreamView view = (XStreamView)viewByContentType(ctype);
         return view.getXstream().fromXML(request.getInputStream());
     }
+
+	public String getCustomRestrict() {
+		return customRestrict;
+	}
+
+	public void setCustomRestrict(String customRestrict) {
+		this.customRestrict = customRestrict;
+	}
 }

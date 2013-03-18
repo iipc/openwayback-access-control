@@ -26,5 +26,10 @@
 		<property name="publicComment" column="public_comment" type="text" />
 		<property name="enabled" column="enabled" type="java.lang.Boolean" />
     <property name="exactMatch" column="exactMatch" type="java.lang.Boolean" />
+    
+    <property name="lastModified" type="java.util.Date">
+      <column name="lastModified" not-null="true" default="current_timestamp" />
+    </property>
+    
  	</class>
 </hibernate-mapping>

@@ -4,7 +4,7 @@
   <artifactId>access-control</artifactId>
   <packaging>pom</packaging>
   <name>Access-Control</name>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
   <ciManagement>
     <system>continuum</system>
     <url>http://builds.archive.org:8081/continuum/</url>
