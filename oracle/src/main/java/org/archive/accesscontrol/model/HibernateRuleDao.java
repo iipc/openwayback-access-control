@@ -91,7 +91,7 @@ public class HibernateRuleDao extends HibernateDaoSupport implements RuleDao {
     }
 
     public void saveRule(Rule rule) {
-    	//rule.setLastModified(new Date());
+    	rule.setLastModified(new Date());
         getHibernateTemplate().saveOrUpdate(rule);
     }
     
@@ -119,7 +119,7 @@ public class HibernateRuleDao extends HibernateDaoSupport implements RuleDao {
      * @param change
      */
     public void saveRule(Rule rule, RuleChange change) {
-    	//rule.setLastModified(new Date());    	
+    	rule.setLastModified(new Date());    	
         Session session1 = getHibernateTemplate().getSessionFactory().openSession();
         Transaction tx = session1.beginTransaction();
         session1.saveOrUpdate(rule);
