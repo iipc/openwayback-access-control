@@ -95,4 +95,8 @@ public class CachingRuleDao implements RuleDao {
             }
         }
     }
+
+	public boolean hasNewRulesSince(String timestamp, String who) throws RuleOracleUnavailableException {
+		return ruleDao.hasNewRulesSince(timestamp, who);
+	}
 }

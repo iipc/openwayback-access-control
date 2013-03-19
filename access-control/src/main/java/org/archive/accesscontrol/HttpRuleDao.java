@@ -3,10 +3,12 @@ package org.archive.accesscontrol;
 import java.io.IOException;
 import java.util.Collection;
 
+import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.methods.HeadMethod;
 import org.archive.accesscontrol.model.Rule;
 import org.archive.accesscontrol.model.RuleSet;
 
@@ -27,6 +29,8 @@ public class HttpRuleDao implements RuleDao {
             new MultiThreadedHttpConnectionManager());
     protected XStream xstream = new XStream();
     private String oracleUrl;
+    
+    public final static String ORACLE_NUM_RULES = "X-Archive-Wayback-Oracle-Num-Rules";
 
     public HttpRuleDao(String oracleUrl) {
         this.oracleUrl = oracleUrl;
@@ -49,9 +53,37 @@ public class HttpRuleDao implements RuleDao {
             rules = (RuleSet) xstream.fromXML(method.getResponseBodyAsStream());
         } catch (IOException e) {
             throw new RuleOracleUnavailableException(e);
+        } finally {
+        	method.releaseConnection();
         }
-        method.releaseConnection();
         return rules;
+    }
+    
+    public boolean hasNewRulesSince(String timestamp, String who) throws RuleOracleUnavailableException
+    {
+    	StringBuilder sb = new StringBuilder(oracleUrl);
+    	sb.append("/rules?modifiedAfter=");
+    	sb.append(timestamp);
+    	
+    	if (who != null) {
+    		sb.append("&who=");
+    		sb.append(who);
+    	}
+    	
+        HttpMethod method = new HeadMethod(sb.toString());
+        try {
+            http.executeMethod(method);
+            Header header = method.getResponseHeader(ORACLE_NUM_RULES);
+            if (header == null) {
+            	return false;
+            }
+            return !header.getValue().equals("0");
+        	
+        } catch (IOException e) {
+        	throw new RuleOracleUnavailableException(e);
+        } finally {
+            method.releaseConnection();
+        }
     }
 
     /**

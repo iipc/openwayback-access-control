@@ -1,11 +1,14 @@
     package org.archive.accesscontrol.model;
 
+import java.text.ParseException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import org.archive.accesscontrol.RuleDao;
+import org.archive.accesscontrol.RuleOracleUnavailableException;
 import org.archive.surt.NewSurtTokenizer;
+import org.archive.util.ArchiveUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -41,7 +44,9 @@ public class HibernateRuleDao extends HibernateDaoSupport implements RuleDao {
                 "from Rule rule where rule.surt = ?", surt);
     }
     
-    public List<Rule> getRulesModifiedAfter(Date date, String who, String customRestrict) {
+    public List<Rule> getRulesModifiedAfter(String timestamp, String who, String customRestrict) throws ParseException {
+    	
+    	Date date = ArchiveUtils.getDate(timestamp);
     	
     	String ruleWhereQuery = "from Rule rule where ";
     	
@@ -144,4 +149,14 @@ public class HibernateRuleDao extends HibernateDaoSupport implements RuleDao {
     public void prepare(Collection<String> surts) {
         // no-op
     }
+
+	public boolean hasNewRulesSince(String timestamp, String who)
+			throws RuleOracleUnavailableException {
+		
+		try {
+			return !getRulesModifiedAfter(timestamp, who, null).isEmpty();
+		} catch (ParseException e) {
+			throw new RuleOracleUnavailableException(e);
+		}
+	}
 }

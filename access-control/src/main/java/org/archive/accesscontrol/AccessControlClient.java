@@ -251,5 +251,9 @@ public class AccessControlClient {
     public void setRobotProxy(String host, int port) {
         robotClient.setRobotProxy(host, port);
     }
-
+    
+    public boolean hasNewRulesSince(String timestamp, String who) throws RuleOracleUnavailableException
+    {
+    	return ruleDao.hasNewRulesSince(timestamp, who);
+    }
 }

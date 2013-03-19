@@ -2,9 +2,7 @@ package org.archive.accesscontrol.oracle;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
@@ -14,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.httpclient.URIException;
+import org.archive.accesscontrol.HttpRuleDao;
 import org.archive.accesscontrol.model.HibernateRuleDao;
 import org.archive.accesscontrol.model.Rule;
 import org.archive.accesscontrol.model.RuleChange;
@@ -25,13 +24,13 @@ import org.springframework.web.servlet.mvc.AbstractController;
 public class RulesController extends AbstractController {
     private HibernateRuleDao ruleDao;
     private AutoFormatView view;
-    
+        
     @Autowired
     public RulesController(HibernateRuleDao ruleDao, AutoFormatView view) {
         this.ruleDao = ruleDao;
         this.view = view;
 
-        String[] methods = { "GET", "PUT", "DELETE", "POST" };
+        String[] methods = { "GET", "PUT", "DELETE", "POST", "HEAD" };
         this.setSupportedMethods(methods);
     }
 
@@ -210,40 +209,34 @@ public class RulesController extends AbstractController {
      * @param request
      * @return
      */
-	protected SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	//protected SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	
-    public ModelAndView getRules(HttpServletRequest request) throws UnsupportedEncodingException, ParseException {
+    public ModelAndView getRules(HttpServletRequest request, HttpServletResponse response, boolean isHead) throws UnsupportedEncodingException, ParseException {
         String prefix = request.getParameter("prefix");
         if (prefix != null) {
-            return new ModelAndView(view, "object", ruleDao
-                    .getRulesWithSurtPrefix(prefix));
+            return new ModelAndView(view, "object", ruleDao.getRulesWithSurtPrefix(prefix));
         }
 
         String surt = request.getParameter("surt");
         if (surt != null) {
-            return new ModelAndView(view, "object", ruleDao
-                    .getRulesWithExactSurt(surt));
+            return new ModelAndView(view, "object", ruleDao.getRulesWithExactSurt(surt));
         }
         
 		List<Rule> rules = null;
         String modifiedAfter = request.getParameter("modifiedAfter");
-        Date date = null;
-        
-        if (modifiedAfter != null) {
-        	modifiedAfter = URLDecoder.decode(modifiedAfter, "UTF-8");
-        	date = dateFormat.parse(modifiedAfter);
-        }
-        
+                
         String who = request.getParameter("who");
         
-        if (date != null || who != null) {
-        	rules = ruleDao.getRulesModifiedAfter(date, who, view.getCustomRestrict());
+        if (modifiedAfter != null || who != null) {
+        	rules = ruleDao.getRulesModifiedAfter(modifiedAfter, who, view.getCustomRestrict());
         }
         
         if (rules == null) {
         	rules = ruleDao.getAllRules();
         }
+        
+        response.addIntHeader(HttpRuleDao.ORACLE_NUM_RULES, rules.size());
         
     	return new ModelAndView(view, "object", rules);        
     }
@@ -300,7 +293,9 @@ public class RulesController extends AbstractController {
             } else if (request.getMethod().equals("POST")) { // POST /rules
                 return postNewRule(request);
             } else if (request.getMethod().equals("GET")) {  // GET /rules 
-                return getRules(request);
+                return getRules(request, response, false);
+            } else if (request.getMethod().equals("HEAD")) {
+                return getRules(request, response, true);
             } else if (request.getMethod().equals("DELETE")) { // DELETE /rules
                 // FIXME: this is useful for testing but is dangerous
                 //Disabled

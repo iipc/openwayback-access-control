@@ -13,6 +13,10 @@
     <module>access-control</module>
     <module>oracle</module>
   </modules>
+  <properties>
+    <website.url>http://github.com/internetarchive/wayback</website.url>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>  
   <distributionManagement>
     <repository>
       <id>repository</id>

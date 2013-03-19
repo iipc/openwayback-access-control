@@ -5,12 +5,12 @@ import org.archive.accesscontrol.AccessControlClient;
 import junit.framework.TestCase;
 
 public class AccessControlClientTest extends TestCase {
-    public static final String ORACLE_URL = "http://localhost:8080/oracle-0.0.1-SNAPSHOT/";
+    public static final String ORACLE_URL = "http://localhost:6013/oracle";
     private AccessControlClient client;
         
     protected void setUp() throws Exception {
         super.setUp();
-        System.out.println("hello world");
+        //System.out.println("hello world");
         client = new AccessControlClient(ORACLE_URL);
     }
 
@@ -24,4 +24,8 @@ public class AccessControlClientTest extends TestCase {
         //System.out.println("Policy=" + policy);
     }
     
+//    public void testModifiedSince() throws Exception {
+//    	assertTrue(client.hasNewRulesSince("20130318163743", "1589"));
+//    	assertFalse(client.hasNewRulesSince("20130318163843", "1589"));    	
+//    }
 }

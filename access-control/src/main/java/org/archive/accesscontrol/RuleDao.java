@@ -29,6 +29,16 @@ public interface RuleDao {
      * @throws URIException
      */
     public RuleSet getRuleTree(String surt) throws RuleOracleUnavailableException;
+    
+    /** 
+     * Check for new rules added after timestamp (standard 14-digit archive format)
+     * 
+     * @param timestamp
+     * @param who
+     * @return
+     * @throws RuleOracleUnavailableException 
+     */
+    public boolean hasNewRulesSince(String timestamp, String who) throws RuleOracleUnavailableException;
 
     /**
      * This method allows a RuleDao to prepare for lookups from a given set of
