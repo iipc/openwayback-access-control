@@ -46,7 +46,7 @@ public class HibernateRuleDao extends HibernateDaoSupport implements RuleDao {
     
     public List<Rule> getRulesModifiedAfter(String timestamp, String who, String customRestrict) throws ParseException {
     	
-    	Date date = ArchiveUtils.getDate(timestamp);
+    	Date date = (timestamp != null ? ArchiveUtils.getDate(timestamp) : null);
     	
     	String ruleWhereQuery = "from Rule rule where ";
     	
