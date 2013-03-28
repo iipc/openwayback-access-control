@@ -9,7 +9,6 @@
   <artifactId>oracle</artifactId>
   <packaging>war</packaging>
   <name>Access-Control: Oracle Webapp</name>
-  <version>0.1.0-SNAPSHOT</version>
   <description></description>
   <build>
     <extensions>
@@ -147,11 +146,6 @@
       <groupId>org.codehaus.jettison</groupId>
       <artifactId>jettison</artifactId>
       <version>1.0-beta-1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.archive.heritrix</groupId>
-      <artifactId>heritrix-commons</artifactId>
-      <version>3.1.2-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
