@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import org.apache.commons.httpclient.URIException;
 import org.archive.accesscontrol.RobotsUnavailableException;
-import org.archive.net.LaxURI;
+import org.archive.url.LaxURI;
 
 /**
  * A client for checking whether a robot is allowed by a robots.txt file.
