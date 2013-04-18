@@ -94,6 +94,13 @@ public class HibernateRuleDao extends HibernateDaoSupport implements RuleDao {
         
         return rules;
     }
+    
+    public RuleSet getAllRulesSet()
+    {
+        RuleSet rules = new RuleSet();
+    	rules.addAll(getHibernateTemplate().find("from Rule"));
+    	return rules;
+    }
 
     public void saveRule(Rule rule) {
     	rule.setLastModified(new Date());

@@ -1,7 +1,6 @@
 package org.archive.accesscontrol;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -44,6 +43,10 @@ public class AccessControlClient {
      */
     public AccessControlClient(String oracleUrl) {
         this(new CachingRuleDao(oracleUrl), new CachingRobotClient());
+    }
+    
+    public AccessControlClient(String oracleUrl, boolean cacheOnce) {
+        this(cacheOnce ? new CacheOnceHttpRulesDao(oracleUrl) : new CachingRuleDao(oracleUrl), new CachingRobotClient());
     }
 
     private String getPolicy(String url, Rule rule)
@@ -185,17 +188,19 @@ public class AccessControlClient {
      * @param surts
      */
     public void prepare(Collection<String> urls) {
-        ArrayList<String> publicSuffixes = new ArrayList<String>(urls.size());
-        for (String url: urls) {
-            String surt = SURT.fromURI(ArchiveUtils.addImpliedHttpIfNecessary(url));
-            publicSuffixes.add(PublicSuffixes
-                    .reduceSurtToAssignmentLevel(getSurtAuthority(surt)));
-        }
-        ruleDao.prepare(publicSuffixes);
-        
-        if (robotPreparationEnabled) {
-            robotClient.prepare(urls, robotUserAgent);
-        }
+//        ArrayList<String> publicSuffixes = new ArrayList<String>(urls.size());
+//        for (String url: urls) {
+//            String surt = SURT.fromURI(ArchiveUtils.addImpliedHttpIfNecessary(url));
+//            publicSuffixes.add(PublicSuffixes
+//                    .reduceSurtToAssignmentLevel(getSurtAuthority(surt)));
+//        }
+//        ruleDao.prepare(publicSuffixes);
+//        
+//        if (robotPreparationEnabled) {
+//            robotClient.prepare(urls, robotUserAgent);
+//        }
+    	//TODO: just call prepare for now
+    	ruleDao.prepare(urls);
     }
 
     protected String getSurtAuthority(String surt) {

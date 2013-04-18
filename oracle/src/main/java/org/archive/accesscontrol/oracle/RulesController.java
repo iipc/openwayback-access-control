@@ -16,6 +16,7 @@ import org.archive.accesscontrol.HttpRuleDao;
 import org.archive.accesscontrol.model.HibernateRuleDao;
 import org.archive.accesscontrol.model.Rule;
 import org.archive.accesscontrol.model.RuleChange;
+import org.archive.accesscontrol.model.RuleSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
@@ -260,9 +261,17 @@ public class RulesController extends AbstractController {
      * @throws URIException
      */
     public ModelAndView getRuleTree(String surt) throws URIException {
+    	RuleSet ruleSet;
+    	
+    	if (surt.equals("all")) {
+    		ruleSet = ruleDao.getAllRulesSet();
+    	} else {
+    		ruleSet = ruleDao.getRuleTree(surt);
+    	}
+    	
     	surt = fixupSchemeSlashes(surt);
     	//System.out.println("*** getRuleTree: " + surt);
-        return new ModelAndView(view, "object", ruleDao.getRuleTree(surt));        
+        return new ModelAndView(view, "object", ruleSet);        
     }
 
     /**

@@ -52,7 +52,7 @@ public class HttpRuleDao implements RuleDao {
 //            System.out.println(response);
             rules = (RuleSet) xstream.fromXML(method.getResponseBodyAsStream());
         } catch (IOException e) {
-            throw new RuleOracleUnavailableException(e);
+            throw new RuleOracleUnavailableException(surt, e);
         } finally {
         	method.releaseConnection();
         }
