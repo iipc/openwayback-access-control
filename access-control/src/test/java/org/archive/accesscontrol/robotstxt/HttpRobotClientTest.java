@@ -16,6 +16,10 @@ public class HttpRobotClientTest extends TestCase {
     
     public void testBasic() throws Exception {
         HttpRobotClient client = new HttpRobotClient();
+        if( System.getProperty("http.proxyHost") != null ) {
+        	client.setRobotProxy(System.getProperty("http.proxyHost"), 
+        			Integer.parseInt(System.getProperty("http.proxyPort")) );
+        }
         assertTrue(client.isRobotPermitted("http://www.archive.org/index.html", "wayback-access-control-test"));
         assertTrue(client.isRobotPermitted("http://google.com/fish.html", "wayback-access-control-test"));
         assertFalse(client.isRobotPermitted("http://google.com/news", "wayback-access-control-test"));
