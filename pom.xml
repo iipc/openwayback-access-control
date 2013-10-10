@@ -27,9 +27,7 @@
   </properties>  
 
   <repositories>
-    <!-- Required for
-      javax.transaction:jta:jar:1.0.1B
-    -->
+    <!-- Required for javax.transaction:jta:jar:1.0.1B -->
     <repository>
       <releases />
       <snapshots>
