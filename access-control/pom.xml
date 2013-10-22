@@ -2,12 +2,12 @@
   <modelVersion>4.0.0</modelVersion>
   
   <parent>
-    <groupId>org.netpreserve.commons</groupId>
-    <artifactId>commons-access-control</artifactId>
+    <groupId>org.netpreserve.openwayback.access-control</groupId>
+    <artifactId>access-control</artifactId>
     <version>0.1.0-SNAPSHOT</version>
   </parent>
   
-    <artifactId>access-control</artifactId>
+    <artifactId>access-control-core</artifactId>
   <packaging>jar</packaging>
   <description></description>
   <name>Access-Control: core library and client</name>
