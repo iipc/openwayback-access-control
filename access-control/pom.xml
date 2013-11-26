@@ -7,10 +7,49 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   
-    <artifactId>access-control-core</artifactId>
+  <artifactId>access-control-core</artifactId>
   <packaging>jar</packaging>
   <description></description>
   <name>Access-Control: core library and client</name>
+  <url>https://github.com/iipc/iipc-web-access-control</url>
+  
+  <organization>
+    <name>The International Internet Preservation Consortium</name>
+    <url>http://netpreserve.org/</url>
+  </organization>
+  <licenses>
+  	<license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>many-devs</id>
+      <name>Many Others Developers Proceed Me</name>
+      <email>many@dev.org</email>
+    </developer>
+    <developer>
+      <id>anjackson</id>
+      <name>Andrew Jackson</name>
+      <email>Andrew.Jackson@bl.uk</email>
+    </developer>
+    <developer>
+      <id>kinmanli</id>
+      <name>Kinman Li</name>
+      <email>Kinman.Li@bl.uk</email>
+    </developer>
+  </developers>
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/iipc/iipc-web-access-control/issues</url>
+  </issueManagement>
+  <scm>
+    <connection>scm:git:git@github.com:iipc/iipc-web-commons.git</connection>
+    <developerConnection>scm:git:git@github.com:iipc/iipc-web-access-control.git</developerConnection>
+    <url>git@github.com:iipc/iipc-web-access-control.gitt</url>
+  </scm>
   
   <build>
     <plugins>
