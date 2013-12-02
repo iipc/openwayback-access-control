@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?><project>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.archive.access-control</groupId>
-  <artifactId>access-control</artifactId>
-  <packaging>jar</packaging>
-  <version>0.1.0-SNAPSHOT</version>
-  <description></description>
-  <name>Access-Control: core library and client</name>
   
   <parent>
-  	<groupId>org.archive</groupId>
-  	<artifactId>access-control</artifactId>
-  	<version>0.1.0-SNAPSHOT</version>
+    <groupId>org.netpreserve.openwayback.access-control</groupId>
+    <artifactId>access-control</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
+  
+  <artifactId>access-control-core</artifactId>
+  <packaging>jar</packaging>
+  <description></description>
+  <name>Access-Control: core library and client</name>
+  <url>https://github.com/iipc/iipc-web-access-control</url>
+  
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/iipc/iipc-web-access-control/issues</url>
+  </issueManagement>
+  <scm>
+    <connection>scm:git:git@github.com:iipc/iipc-web-commons.git</connection>
+    <developerConnection>scm:git:git@github.com:iipc/iipc-web-access-control.git</developerConnection>
+    <url>git@github.com:iipc/iipc-web-access-control.gitt</url>
+  </scm>
   
   <build>
     <plugins>
@@ -24,24 +34,6 @@
       </plugin>
     </plugins>
   </build>
-  <repositories>
-    <repository>
-      <releases />
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <id>archive</id>
-      <url>http://builds.archive.org:8080/maven2</url>
-    </repository>
-    <repository>
-      <releases />
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>sun-java</id>
-      <url>http://download.java.net/maven/2</url>
-    </repository>
-  </repositories>
   <dependencies>
   
     <dependency>
@@ -49,6 +41,13 @@
       <artifactId>junit</artifactId>
       <version>4.4</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.netpreserve.commons</groupId>
+      <artifactId>commons-web</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    
    
     <dependency>
       <groupId>com.thoughtworks.xstream</groupId>
@@ -66,7 +65,7 @@
       <artifactId>commons-httpclient</artifactId>
       <version>3.1</version>
     </dependency>    
-    
+<!--    
     <dependency>
       <groupId>org.archive.heritrix</groupId>
       <artifactId>heritrix-commons</artifactId>
@@ -78,7 +77,7 @@
         </exclusion>      
       </exclusions>    
     </dependency>
-   
+  --> 
     <dependency>
       <groupId>commons-pool</groupId>
       <artifactId>commons-pool</artifactId>
