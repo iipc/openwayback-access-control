@@ -77,7 +77,7 @@
     <site>
       <id>website</id>
       <name>Website</name>
-      <url>${website.url}/projects/${pom.artifactId}</url>
+      <url>${website.url}/projects/${project.artifactId}</url>
     </site>
   </distributionManagement>
   <url>https://github.com/iipc/openwayback</url>
