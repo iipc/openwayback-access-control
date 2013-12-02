@@ -77,13 +77,14 @@
     <site>
       <id>website</id>
       <name>Website</name>
-      <url>${website.url}/projects/${project.artifactId}</url>
+      <url>${website.url}/projects/${pom.artifactId}</url>
     </site>
   </distributionManagement>
   <url>https://github.com/iipc/openwayback</url>
   <scm>
-     <connection>scm:git:git@github.com:iipc/iipc-web-access-control.git</connection>
-     <url>https://github.com/iipc/iipc-web-access-control</url>
+      <connection>scm:git:git@github.com:iipc/iipc-web-access-control.git</connection>
+      <developerConnection>scm:git:git@github.com:iipc/iipc-web-access-control.git</developerConnection>
+      <url>git@github.com:iipc/iipc-web-access-control.git</url>
   </scm>
   <issueManagement>
      <system>GitHub Issues</system>
