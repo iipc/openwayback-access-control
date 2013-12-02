@@ -4,13 +4,13 @@
   <parent>
     <artifactId>access-control</artifactId>
     <groupId>org.netpreserve.openwayback.access-control</groupId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
   
   <artifactId>access-control-oracle</artifactId>
   <packaging>war</packaging>
   <name>Access-Control: Oracle Webapp</name>
-  <description />
+  <description></description>
   <build>
     <extensions>
       <extension>
@@ -88,7 +88,7 @@
     <dependency>
       <groupId>org.netpreserve.openwayback.access-control</groupId>
       <artifactId>access-control-core</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
