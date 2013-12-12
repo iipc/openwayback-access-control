@@ -1,10 +1,18 @@
 language: java
 jdk:
-  - oraclejdk7
+- oraclejdk7
+before_install:
+- git clone https://github.com/iipc/travis.git target/travis
 before_script:
- - "echo $JAVA_OPTS"
- - "export JAVA_OPTS=-Xmx1024m"
- - "echo $JAVA_OPTS"
- - "ulimit -a"
- - "ulimit -u 2048"
- - "ulimit -a"
+- export JAVA_OPTS=-Xmx1024m
+- export MAVEN_OPTS=-Xmx512m
+- ulimit -u 2048
+script:
+- target/travis/deploy-if.sh
+branches:
+  only:
+  - master
+env:
+  global:
+  - secure: aDtoYT3WOlpy4oVyIw4EPBiNH+UwE/OfqQByNVG2U4L2eNwR9b1DwnDSHdXkETZUtbNDZymY438A8c49kBiety6HDwWr4Mkai+Fwh66UwymOgGbtQl2B1zy95KJ+4at/r5+bl5z7bhQ0aWERM3a0LeYl/hKwC0udWLnv+hk9O+Q=
+  - secure: XlBEXly0DHXMzKBmV3FRR7uQSPmAZPVcF1CgH9yrXp4YY0riwXkHTdIiEHltTqCMwIN5GlAmJmeqc+aXyqcURQwLbaZ+HfZ/HkLkEBtyVc5gJS1qbfJggl6rOMXHhNV9qlrwCUhPC3PJJCSLBpCmZg94hPp6L42mNthvJLOWtXk=
