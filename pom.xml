@@ -11,7 +11,7 @@
   <artifactId>openwayback-access-control</artifactId>
   <packaging>pom</packaging>
   <name>OpenWayback Access-Control</name>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.1</version>
   
   <organization>
     <name>The International Internet Preservation Consortium</name>
@@ -43,7 +43,7 @@
   </developers>
     
   <ciManagement>
-    <url>https://github.com/iipc/iipc-web-access-control/</url>
+    <url>https://github.com/iipc/openwayback-access-control/</url>
     <system>Travis CI</system>
   </ciManagement>
   <modules>
@@ -51,7 +51,7 @@
     <module>oracle</module>
   </modules>
   <properties>
-    <website.url>http://github.com/internetarchive/ia-web-access-control</website.url>
+    <website.url>http://github.com/iipc/openwayback-access-control</website.url>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>  
 
@@ -69,12 +69,12 @@
 
   <url>https://github.com/iipc/openwayback</url>
   <scm>
-      <connection>scm:git:git@github.com:iipc/iipc-web-access-control.git</connection>
-      <developerConnection>scm:git:git@github.com:iipc/iipc-web-access-control.git</developerConnection>
-      <url>git@github.com:iipc/iipc-web-access-control.git</url>
+      <connection>scm:git:git@github.com:iipc/openwayback-access-control.git</connection>
+      <developerConnection>scm:git:git@github.com:iipc/openwayback-access-control.git</developerConnection>
+      <url>git@github.com:iipc/openwayback-access-control.git</url>
   </scm>
   <issueManagement>
      <system>GitHub Issues</system>
-     <url>https://github.com/iipc/iipc-web-access-control/issues</url>
+     <url>https://github.com/iipc/openwayback-access-control/issues</url>
   </issueManagement>
 </project>

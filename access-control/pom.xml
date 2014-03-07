@@ -4,24 +4,13 @@
   <parent>
     <groupId>org.netpreserve.openwayback</groupId>
     <artifactId>openwayback-access-control</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
   </parent>
   
   <artifactId>openwayback-access-control-core</artifactId>
   <packaging>jar</packaging>
   <description />
   <name>Access-Control: core library and client</name>
-  <url>https://github.com/iipc/iipc-web-access-control</url>
-  
-  <issueManagement>
-    <system>GitHub Issues</system>
-    <url>https://github.com/iipc/iipc-web-access-control/issues</url>
-  </issueManagement>
-  <scm>
-    <connection>scm:git:git@github.com:iipc/iipc-web-commons.git</connection>
-    <developerConnection>scm:git:git@github.com:iipc/iipc-web-access-control.git</developerConnection>
-    <url>git@github.com:iipc/iipc-web-access-control.gitt</url>
-  </scm>
   
   <build>
     <plugins>
