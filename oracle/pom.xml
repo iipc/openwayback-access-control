@@ -81,11 +81,6 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.netpreserve.commons</groupId>
-      <artifactId>webarchive-commons</artifactId>
-      <version>1.1.1</version>
-    </dependency>
-    <dependency>
       <groupId>org.netpreserve.openwayback</groupId>
       <artifactId>openwayback-access-control-core</artifactId>
       <version>1.0.2-SNAPSHOT</version>
