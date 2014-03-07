@@ -8,7 +8,7 @@ import org.archive.accesscontrol.model.Rule;
 import org.archive.accesscontrol.model.RuleSet;
 import org.archive.accesscontrol.robotstxt.CachingRobotClient;
 import org.archive.accesscontrol.robotstxt.RobotClient;
-import org.archive.url.PublicSuffixes;
+import org.archive.net.PublicSuffixes;
 import org.archive.util.ArchiveUtils;
 import org.archive.util.SURT;
 
