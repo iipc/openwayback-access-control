@@ -7,8 +7,8 @@
     <version>7</version>
   </parent>
 
-  <groupId>org.netpreserve.openwayback.access-control</groupId>
-  <artifactId>access-control</artifactId>
+  <groupId>org.netpreserve.openwayback</groupId>
+  <artifactId>openwayback-access-control</artifactId>
   <packaging>pom</packaging>
   <name>OpenWayback Access-Control</name>
   <version>1.0.1-SNAPSHOT</version>

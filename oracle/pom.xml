@@ -2,12 +2,12 @@
   <modelVersion>4.0.0</modelVersion>
   
   <parent>
-    <artifactId>access-control</artifactId>
-    <groupId>org.netpreserve.openwayback.access-control</groupId>
+    <artifactId>openwayback-access-control</artifactId>
+    <groupId>org.netpreserve.openwayback</groupId>
     <version>1.0.1-SNAPSHOT</version>
   </parent>
   
-  <artifactId>access-control-oracle</artifactId>
+  <artifactId>openwayback-access-control-oracle</artifactId>
   <packaging>war</packaging>
   <name>Access-Control: Oracle Webapp</name>
   <description />
@@ -82,12 +82,12 @@
     </dependency>
     <dependency>
       <groupId>org.netpreserve.commons</groupId>
-      <artifactId>commons-web</artifactId>
-      <version>1.0.0</version>
+      <artifactId>webarchive-commons</artifactId>
+      <version>1.1.1</version>
     </dependency>
     <dependency>
-      <groupId>org.netpreserve.openwayback.access-control</groupId>
-      <artifactId>access-control-core</artifactId>
+      <groupId>org.netpreserve.openwayback</groupId>
+      <artifactId>openwayback-access-control-core</artifactId>
       <version>1.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
