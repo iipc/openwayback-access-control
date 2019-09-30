@@ -55,18 +55,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>  
 
-  <repositories>
-    <!-- Required for javax.transaction:jta:jar:1.0.1B -->
-    <repository>
-      <releases />
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>sun-java</id>
-      <url>http://download.java.net/maven/2</url>
-    </repository>
-  </repositories>
-
   <url>https://github.com/iipc/openwayback</url>
   <scm>
       <connection>scm:git:git@github.com:iipc/openwayback-access-control.git</connection>
